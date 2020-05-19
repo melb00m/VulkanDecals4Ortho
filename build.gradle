@@ -1,0 +1,40 @@
+plugins {
+    id 'application'
+}
+
+group 'de.melb00m'
+version '0.1.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+compileJava {
+    options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
+}
+
+jar {
+    manifest {
+        attributes(
+                'Implementation-Version': getArchiveVersion()
+        )
+    }
+}
+
+application {
+    mainClassName 'de.melb00m.vd4o.app.VulkanDecals4Ortho'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'info.picocli:picocli:4.2.0'
+    implementation 'me.tongfei:progressbar:0.8.1'
+    annotationProcessor 'info.picocli:picocli-codegen:4.2.0'
+
+    //testImplementation 'junit:junit:4.13'
+    //runtime files('src/dist/config')
+}
